@@ -1,0 +1,16 @@
+version: '20.10.23' # docker version
+services:
+  www:
+    image: princeram/ttms:1.0
+    volumes:
+      - "./ttms:/var/www/html" # Sync project dir with container we dir
+    ports:
+      - "80:80" # Expose port 80 to host
+      - "443:443" # Expose port 443 to host for future ssl traffic 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8001:80"
+    environment:
+      - PMA_HOST=timetable.cd2ekhi0lppt.ap-south-1.rds.amazonaws.com
+      - PMA_PORT=3306

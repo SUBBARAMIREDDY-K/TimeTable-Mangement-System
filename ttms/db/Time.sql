@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2022 at 01:34 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.0.13
+-- Generation Time: Mar 04, 2023 at 06:19 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `timetable`
 --
-CREATE DATABASE IF NOT EXISTS `timetable` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `timetable`;
 
 -- --------------------------------------------------------
 
@@ -88,7 +86,8 @@ INSERT INTO `assigncourse` (`course_title`, `lecturername`, `year`, `semester`, 
 ('c#', 'raja', 'III', 'II', 'cse', 'B'),
 ('dmdw', 'madhu', 'III', 'II', 'cse', 'A'),
 ('cis', 'kavarasan', 'III', 'II', 'cse', 'A'),
-('cis', 'kavarasan', 'III', 'II', 'cse', 'B');
+('cis', 'kavarasan', 'III', 'II', 'cse', 'B'),
+('dmdw', 'shima', 'III', 'II', 'cse', 'A');
 
 -- --------------------------------------------------------
 
@@ -113,7 +112,8 @@ INSERT INTO `course` (`cid`, `course_title`, `course_code`, `department`) VALUES
 (7, ' dmdw', '12345', 'cse'),
 (9, ' cis', '1457', 'cse'),
 (10, ' coi', '7529', 'cse'),
-(11, ' psp', '162626', 'cse');
+(11, ' psp', '162626', 'cse'),
+(15, ' MAD', '12458', 'cse');
 
 -- --------------------------------------------------------
 
@@ -286,6 +286,14 @@ CREATE TABLE `staff` (
   `designation` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `staff`
+--
+
+INSERT INTO `staff` (`firstname`, `lastname`, `username`, `phonenumber`, `email`, `password`, `department`, `designation`) VALUES
+('ram', 'k', 'rami', '7659993352', 'ksramireddy11@gmail.com', '12345', 'cse', 'Lecture I'),
+('suman', 'k', 'suman', '8790336361', 'suman@gmail.com', '12345', 'cse', 'Lecture II');
+
 -- --------------------------------------------------------
 
 --
@@ -310,6 +318,7 @@ CREATE TABLE `student` (
 
 INSERT INTO `student` (`firstname`, `lastname`, `username`, `phonenumber`, `email`, `password`, `year`, `branch`, `section`) VALUES
 ('bhadra', 'ch', 'bhadra', '738617374', 'veerabhadra619@gmail.com', '12345', 'III', 'cse', 'B'),
+('nani', 'k', 'nani', '7659993352', 'nani@gmail.com', '12345', 'IV', 'cse', 'A'),
 ('ram', 'k', 'ram', '7659993352', 'ksramireddy11@gmail.com', '12345', 'III', 'cse', 'A');
 
 -- --------------------------------------------------------
@@ -333,7 +342,11 @@ CREATE TABLE `time` (
 CREATE TABLE `ttms` (
   `day` varchar(20) NOT NULL,
   `period` int(11) NOT NULL,
-  `section` varchar(10) NOT NULL,
+  `batch` varchar(20) NOT NULL,
+  `year` varchar(20) NOT NULL,
+  `semister` varchar(20) NOT NULL,
+  `department` varchar(20) NOT NULL,
+  `section` varchar(20) NOT NULL,
   `lecturername` varchar(25) NOT NULL,
   `course_title` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -342,11 +355,12 @@ CREATE TABLE `ttms` (
 -- Dumping data for table `ttms`
 --
 
-INSERT INTO `ttms` (`day`, `period`, `section`, `lecturername`, `course_title`) VALUES
-('MONDAY', 3, 'A', 'raja', 'c#'),
-('TUESDAY', 2, 'A', 'raja', 'c#'),
-('TUESDAY', 3, 'A', 'kavarasan', 'cis'),
-('WEDNESDAY', 3, 'A', 'kavarasan', 'cis');
+INSERT INTO `ttms` (`day`, `period`, `batch`, `year`, `semister`, `department`, `section`, `lecturername`, `course_title`) VALUES
+('MONDAY', 1, '2019', 'III', 'II', 'CSE', 'A', 'raja', 'c#'),
+('MONDAY', 2, '2019', 'III', 'II', 'CSE', 'A', 'raja', 'c#'),
+('THURSDAY', 3, '2019', 'III', 'II', 'CSE', 'A', 'raja', 'c#'),
+('MONDAY', 3, '2019', 'III', 'II', 'CSE', 'B', 'raja', 'c#'),
+('MONDAY', 3, '2019', 'III', 'II', 'CSE', 'A', 'madhu', 'dmdw');
 
 --
 -- Indexes for dumped tables
@@ -426,7 +440,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `days`

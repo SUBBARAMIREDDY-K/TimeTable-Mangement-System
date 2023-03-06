@@ -1,7 +1,7 @@
 <?php
-    $host = 'localhost';
-    $user = 'root';
-    $pass = '';
+    $host = 'timetable.cd2ekhi0lppt.ap-south-1.rds.amazonaws.com';
+    $user = 'admin';
+    $pass = 'ttms12345';
     $dbname ='timetable';
     if($mycon = @mysqli_connect($host,$user,$pass))
     {

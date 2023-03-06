@@ -207,7 +207,7 @@ include "includes/sidebar.php";
                                 <tbody>
                                     <?php
                                         $count = 0;
-                                        $query = "SELECT * FROM assignCourse";
+                                        $query = "SELECT * FROM assigncourse";
                                         $query_run = mysqli_query($mycon,$query);
                                         while($row = mysqli_fetch_assoc($query_run))
                                         {
