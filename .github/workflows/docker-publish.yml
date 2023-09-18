@@ -15,6 +15,9 @@ jobs:
 
       - name: Login to GitHub Container Registry
         run: echo ${{ secrets.DOCKER_PAT }} | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
+        
+      - name: Debug GitHub SHA
+        run: echo ${{ github.sha }}
 
       - name: Build and tag Docker image
         run: |
