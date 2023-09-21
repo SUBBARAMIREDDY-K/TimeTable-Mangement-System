@@ -5,3 +5,8 @@ RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 #install the mysqli module
 RUN docker-php-ext-install mysqli
 EXPOSE 80
+
+
+
+#ENV VARIABLES
+#HOST, USER, PASSWORD, DB

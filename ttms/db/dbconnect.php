@@ -1,8 +1,8 @@
 <?php
-    $host = 'timetable.cd2ekhi0lppt.ap-south-1.rds.amazonaws.com';
-    $user = 'admin';
-    $pass = 'ttms12345';
-    $dbname ='timetable';
+    $host = getenv("HOST");
+    $user = getenv("USER");
+    $pass = getenv("PASSWORD");
+    $dbname = getenv("DB");
     if($mycon = @mysqli_connect($host,$user,$pass))
     {
         if(!mysqli_select_db($mycon,$dbname))
